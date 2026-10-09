@@ -152,7 +152,7 @@ footer { font-size: var(--s2); color: var(--muted); display: grid; gap: 6px; bor
       <div><h3>Findings</h3><ul id="findings"></ul></div>
       <div><h3>What this leaves out</h3><ul>
         <li>Energy-only, day-ahead revenue. Real-time spikes, capacity and ancillary payments would add value to every option.</li>
-        <li>Prices are taken as given here. A 2 GW plant would push down prices in small markets, which makes steering <em>more</em> valuable (see the paper).</li>
+        <li>Prices are taken as given here. A 2 GW plant would push down prices in small markets, which makes steering from a US slot <em>more</em> valuable and leaves the Atlantic case about unchanged (see the paper).</li>
         <li>Rectenna costs are very uncertain. We scale one NASA estimate by footprint.</li>
         <li>An HVDC line can also carry other generators' power. That reuse isn't credited.</li>
         <li>Cross-border regulation and siting are ignored. They may matter most for the transatlantic case.</li>
@@ -364,7 +364,7 @@ function renderFacts() {
   ];
   document.getElementById("facts").replaceChildren(...facts.map(([v, t]) => { const d = el("div", { class: "fact" }); d.append(el("b", {}, v), el("span", {}, t)); return d; }));
   const f = [
-    "Two or three rectennas capture nearly all the value. Beyond three, gains are small.",
+    "Two or three rectennas capture 70–94% of the value of using all of them. Beyond three, gains are small.",
     "The gain is broad, not spike-driven: the top 10% of hours supply only about half of it.",
     "The best slots sit between 60°W and 15°W, where Spain and the US East Coast are both in view (27–40% premium in 2025).",
     "Between nearby markets, such as New York and New England, an ordinary HVDC line or a battery beats a second rectenna.",

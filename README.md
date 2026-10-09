@@ -23,14 +23,15 @@ NYISO (Capital zone), ISO-NE (Internal Hub) and Spain (OMIE). All are public wit
 ## Findings (2 GW satellite, no price impact)
 
 - **Steering is worth +16% to +39%** over the best single rectenna in a US slot (100°W), and **+22% to +36%**
-  across the Atlantic (40°W, Spain plus the US East Coast). The second and third rectennas capture almost all of it.
+  across the Atlantic (40°W, Spain plus the US East Coast). Two or three rectennas capture 70–94% of the gain from using all of them.
 - **Value is broad, not spike-driven**: the top 10% of hours supply only about half of the gain.
 - **Over long distances the beam is the cheapest wire.** Spain plus New England (2025): a second rectenna adds
   $366M/yr against about $376M/yr in annualized cost at NASA's ground-segment estimate. A subsea HVDC line doing the
   same job (6,800 km) would cost about $3.4B/yr. Beyond roughly 900 km over land or 300 km subsea, a rectenna is
   cheaper than an HVDC line of the same size.
 - **Over short distances it isn't.** Within the US Northeast, an ordinary HVDC line or a battery beats a second rectenna.
-- **Price impact raises the value of steering.** A 2 GW plant depresses prices in small markets, so spreading
+- **Price impact raises the value of steering from a US slot** (roughly doubling it) and leaves the Atlantic case about
+  unchanged. A 2 GW plant depresses prices in small markets, so spreading
   output across markets helps.
 - **Batteries often do better on value per dollar** (3 of 4 cases). They complement steering rather than replace it.
 

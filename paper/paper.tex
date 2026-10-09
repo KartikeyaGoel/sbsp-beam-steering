@@ -19,13 +19,13 @@ quantified with market data. We combine GEO visibility and rectenna-sizing geome
 day-ahead prices from five U.S.\ markets (CAISO, ERCOT, MISO, NYISO, ISO-NE) and Spain (OMIE), and solve a
 revenue-maximizing hourly beam allocation for a 2\,GW satellite. Steering raises energy revenue by 16--39\% over
 the best single rectenna from a U.S.\ slot (100$^\circ$W) and by 22--36\% from a transatlantic slot (40$^\circ$W).
-Two or three rectennas capture nearly all of this. The gain is broad-based rather than spike-driven: the top 10\%
+Two or three rectennas capture 70--94\% of the gain from using all of them. The gain is broad-based rather than spike-driven: the top 10\%
 of hours supply about half of it. We then ask whether the same flexibility is cheaper to buy with a wire or a battery.
 Between Spain and New England, a second rectenna roughly pays for itself at NASA's own ground-segment cost
 (\$366M/yr added revenue against \$376M/yr annualized cost in 2025), while a 6,800\,km subsea HVDC line doing the
 same job would cost about nine times more. Beyond about 900\,km over land or 300\,km subsea, a rectenna is a cheaper
 ``wire'' than HVDC. Over shorter distances, and in most cases on value per dollar, batteries or HVDC do better.
-Price impact, which is large for a gigawatt-scale plant in a small market, makes steering more valuable rather than less.
+Price impact, which is large for a gigawatt-scale plant in a small market, roughly doubles the premium from the U.S.\ slot and leaves the transatlantic premium about unchanged.
 Code and data are open.
 \end{abstract}
 
@@ -105,7 +105,7 @@ subsets of visible rectennas.
 \subsection{Costs and benchmarks}
 NASA's 2024 study estimates a \$3.12B ground segment for RD1's single 6\,km, 2\,GW rectenna~\cite{nasa2024}. We take
 this as the cost at a reference site of area factor $A=1.5$ (about 45$^\circ$ elevation) and scale linearly with $A$.
-Capital is annualized at 7\% over 30 years (and at NASA's 3\% as a sensitivity). For the HVDC benchmark, a fixed rectenna
+Capital is annualized at 7\% over 30 years (and at 3\% as a sensitivity). For the HVDC benchmark, a fixed rectenna
 at the best site is joined by a 2\,GW line to the second site. We assume \$0.5B/GW for the converter pair, \$1.1M/km/GW
 overland or \$3.3M/km/GW subsea, a 1.2 route factor, 1.5\% converter loss plus 3\% per 1,000\,km, and a 40-year life.
 For the battery benchmark, a 2\,GW/8\,GWh battery (87\% round trip, \$250/kWh, 15 years) sits at the fixed site and
@@ -156,8 +156,10 @@ gain would be. It also means the gain could shrink as storage flattens daily pri
 A 2\,GW injection is large relative to New England (13\,GW average load) or New York (17\,GW). With price impact on, a
 single-site satellite depresses its own price, and spreading output across markets avoids that. The premium therefore rises
 with $k_0$ (Fig.~\ref{fig:impact}). In the U.S.\ slot it rises from 16\% to 32\% at $k_0=2$ and to 62\% at $k_0=5$. The
-transatlantic premium is less sensitive, because Spain is larger. We regard $k_0\approx1$--2 as plausible but uncertain. The
-qualitative conclusion is that price impact is a reason \emph{to} steer, not a limit on it.
+transatlantic premium is less sensitive, because Spain is larger: with all stations it edges up (36\% to 41\% at $k_0=5$),
+but the two-station Spain--New England premium falls (30\% to 24\%), because New England's small market saturates. We regard $k_0\approx1$--2 as plausible but uncertain. The
+qualitative conclusion is that price impact is a reason to steer among several small markets, not a limit on it, but
+it penalizes leaning on one small market.
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.49\textwidth]{fig5_price_impact.png}\hfill
@@ -170,7 +172,7 @@ Figure~\ref{fig:bench} compares the added revenue of each option to its annualiz
 
 \emph{Over long distances, the beam is the cheapest wire.} Between Spain and New England (2025), a second rectenna adds
 \$366M/yr at an annualized cost of \$376M/yr (ratio 0.97), essentially break-even at NASA's cost and comfortably
-positive at NASA's 3\% discount rate (break-even \$4.79B). The equivalent subsea HVDC line (6,775\,km, 22\% losses) would
+positive at a 3\% discount rate (break-even \$4.79B). The equivalent subsea HVDC line (6,775\,km, 22\% losses) would
 add only \$226M/yr at about \$3.43B/yr. For a 2\,GW line, the rectenna is cheaper than HVDC beyond about 890\,km overland or
 300\,km subsea.
 
