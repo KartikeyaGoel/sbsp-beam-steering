@@ -9,6 +9,7 @@ study has priced it with market data. This repo does.
 **Paper:** [`paper/paper.pdf`](paper/paper.pdf). **Interactive explorer:** open `site/index.html` in a browser
 (it is self-contained; the model runs client-side on the same price data).
 
+Three parts:
 
 1. **Geometry**: which rectenna sites each GEO slot can see, at what elevation, and how much larger a
    low-elevation rectenna must be. Includes hour-by-hour Earth-shadow eclipses.
