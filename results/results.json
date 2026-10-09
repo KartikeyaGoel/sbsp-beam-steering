@@ -1,0 +1,1850 @@
+{
+ "assumptions": {
+  "satellite_gw": 2.0,
+  "min_elevation_deg": 15.0,
+  "wacc": 0.07,
+  "life_years": 30,
+  "ground_station_cost_usd": 3119000000.0,
+  "ground_ref_area": 1.5,
+  "battery_cost_per_yr_1gw4h": 109794624.7010065
+ },
+ "runs": {
+  "2025 US (100\u00b0W)": {
+   "markets": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "params": {
+    "CAISO": {
+     "elev": 45.262,
+     "area": 1.537,
+     "eta": 0.972,
+     "load_gw": 25
+    },
+    "ERCOT": {
+     "elev": 53.315,
+     "area": 1.324,
+     "eta": 0.975,
+     "load_gw": 50
+    },
+    "MISO": {
+     "elev": 42.342,
+     "area": 1.639,
+     "eta": 0.97,
+     "load_gw": 75
+    },
+    "NYISO": {
+     "elev": 34.382,
+     "area": 2.021,
+     "eta": 0.965,
+     "load_gw": 17
+    },
+    "ISONE": {
+     "elev": 33.505,
+     "area": 2.076,
+     "eta": 0.964,
+     "load_gw": 13
+    },
+    "OMIE": {
+     "elev": -13.505,
+     "area": -6.239,
+     "eta": -0.146,
+     "load_gw": 28
+    }
+   },
+   "avail_mean": 0.9908599695585998,
+   "best_by_n": [
+    {
+     "n": 1,
+     "stations": [
+      "ISONE"
+     ],
+     "revenue_musd": 1139.2151697682464,
+     "premium_pct": 0.0,
+     "marginal_rev_musd": 0.0,
+     "marginal_cost_musd": 0.0,
+     "share": {
+      "ISONE": 1.0
+     }
+    },
+    {
+     "n": 2,
+     "stations": [
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 1220.0719327457011,
+     "premium_pct": 7.097584821829894,
+     "marginal_rev_musd": 80.85676297745466,
+     "marginal_cost_musd": 338.686882729232,
+     "share": {
+      "NYISO": 0.525,
+      "ISONE": 0.475
+     }
+    },
+    {
+     "n": 3,
+     "stations": [
+      "ERCOT",
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 1269.7213420011915,
+     "premium_pct": 11.455796560319165,
+     "marginal_rev_musd": 49.649409255490305,
+     "marginal_cost_musd": 221.88479222377347,
+     "share": {
+      "ERCOT": 0.153,
+      "NYISO": 0.423,
+      "ISONE": 0.424
+     }
+    },
+    {
+     "n": 4,
+     "stations": [
+      "CAISO",
+      "ERCOT",
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 1308.6780911197036,
+     "premium_pct": 14.875409479135659,
+     "marginal_rev_musd": 38.95674911851216,
+     "marginal_cost_musd": 257.5712232660682,
+     "share": {
+      "CAISO": 0.231,
+      "ERCOT": 0.095,
+      "NYISO": 0.313,
+      "ISONE": 0.361
+     }
+    },
+    {
+     "n": 5,
+     "stations": [
+      "CAISO",
+      "ERCOT",
+      "MISO",
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 1324.4702909029913,
+     "premium_pct": 16.26164451202241,
+     "marginal_rev_musd": 15.792199783287764,
+     "marginal_cost_musd": 274.6959249507674,
+     "share": {
+      "CAISO": 0.226,
+      "ERCOT": 0.084,
+      "MISO": 0.087,
+      "NYISO": 0.255,
+      "ISONE": 0.347
+     }
+    }
+   ],
+   "single_station": {
+    "CAISO": 561.2616210588325,
+    "ERCOT": 567.9045744084375,
+    "MISO": 654.0221238637675,
+    "NYISO": 1094.8612562936828,
+    "ISONE": 1139.2151697682464
+   },
+   "breakeven_ground_cost_busd": 0.7446176884514885,
+   "price_impact": {
+    "0": {
+     "premium_pct_all": 16.26164451202241,
+     "premium_pct_2": 7.097584821829894,
+     "single_revenue_musd": 1139.2151697682464
+    },
+    "1": {
+     "premium_pct_all": 23.19187265701046,
+     "premium_pct_2": 11.371547827971185,
+     "single_revenue_musd": 1015.5971758441251
+    },
+    "2": {
+     "premium_pct_all": 31.80254207303934,
+     "premium_pct_2": 17.02847896681856,
+     "single_revenue_musd": 905.5345332252296
+    },
+    "5": {
+     "premium_pct_all": 62.07215432815873,
+     "premium_pct_2": 33.00315186252985,
+     "single_revenue_musd": 658.4596781116045
+    },
+    "10": {
+     "premium_pct_all": 109.0061046193925,
+     "premium_pct_2": 56.432383082195244,
+     "single_revenue_musd": 441.49876288564917
+    }
+   },
+   "benchmarks": {
+    "pair": [
+     "ISONE",
+     "NYISO"
+    ],
+    "second_rectenna": {
+     "added_rev_musd": 80.85676297745466,
+     "annual_cost_musd": 338.686882729232
+    },
+    "hvdc": {
+     "added_rev_musd": 68.62986158276105,
+     "annual_cost_musd": 110.93730991606625,
+     "route_km": 217.7199616302426,
+     "loss": 0.021531598848907277,
+     "subsea": false
+    },
+    "battery_2gw_8gwh": {
+     "added_rev_musd": 121.97453425238672,
+     "annual_cost_musd": 219.589249402013
+    }
+   },
+   "concentration": {
+    "top_1pct": 0.14982773098896932,
+    "top_5pct": 0.34811226259548494,
+    "top_10pct": 0.49166575635325893,
+    "top_25pct": 0.7561583432473155,
+    "hours_with_gain": 5712,
+    "share_by_utc_hour": {
+     "CAISO": [
+      0.011,
+      0.107,
+      0.281,
+      0.455,
+      0.496,
+      0.502,
+      0.498,
+      0.573,
+      0.539,
+      0.446,
+      0.242,
+      0.187,
+      0.273,
+      0.391,
+      0.242,
+      0.063,
+      0.047,
+      0.041,
+      0.033,
+      0.019,
+      0.014,
+      0.011,
+      0.008,
+      0.008
+     ],
+     "ERCOT": [
+      0.365,
+      0.359,
+      0.229,
+      0.111,
+      0.055,
+      0.044,
+      0.034,
+      0.021,
+      0.03,
+      0.03,
+      0.036,
+      0.055,
+      0.041,
+      0.025,
+      0.019,
+      0.017,
+      0.022,
+      0.033,
+      0.047,
+      0.075,
+      0.083,
+      0.053,
+      0.061,
+      0.166
+     ],
+     "MISO": [
+      0.138,
+      0.082,
+      0.05,
+      0.028,
+      0.014,
+      0.008,
+      0.002,
+      0.004,
+      0.005,
+      0.005,
+      0.025,
+      0.083,
+      0.063,
+      0.019,
+      0.095,
+      0.151,
+      0.171,
+      0.193,
+      0.201,
+      0.171,
+      0.132,
+      0.088,
+      0.138,
+      0.214
+     ],
+     "NYISO": [
+      0.222,
+      0.172,
+      0.178,
+      0.167,
+      0.159,
+      0.164,
+      0.136,
+      0.106,
+      0.101,
+      0.131,
+      0.241,
+      0.249,
+      0.246,
+      0.246,
+      0.316,
+      0.406,
+      0.372,
+      0.364,
+      0.351,
+      0.335,
+      0.334,
+      0.389,
+      0.372,
+      0.331
+     ],
+     "ISONE": [
+      0.265,
+      0.279,
+      0.262,
+      0.24,
+      0.276,
+      0.281,
+      0.33,
+      0.296,
+      0.324,
+      0.387,
+      0.456,
+      0.426,
+      0.377,
+      0.319,
+      0.328,
+      0.362,
+      0.388,
+      0.369,
+      0.368,
+      0.4,
+      0.437,
+      0.46,
+      0.421,
+      0.281
+     ]
+    }
+   },
+   "breakeven_ground_cost_busd_3pct": 1.1761452891034538
+  },
+  "2025 Atlantic (40\u00b0W)": {
+   "markets": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "params": {
+    "CAISO": {
+     "elev": 1.515,
+     "area": 50.896,
+     "eta": 0.243,
+     "load_gw": 25
+    },
+    "ERCOT": {
+     "elev": 16.913,
+     "area": 4.266,
+     "eta": 0.931,
+     "load_gw": 50
+    },
+    "MISO": {
+     "elev": 22.114,
+     "area": 3.211,
+     "eta": 0.947,
+     "load_gw": 75
+    },
+    "NYISO": {
+     "elev": 29.728,
+     "area": 2.351,
+     "eta": 0.96,
+     "load_gw": 17
+    },
+    "ISONE": {
+     "elev": 31.108,
+     "area": 2.242,
+     "eta": 0.961,
+     "load_gw": 13
+    },
+    "OMIE": {
+     "elev": 31.229,
+     "area": 2.233,
+     "eta": 0.961,
+     "load_gw": 28
+    }
+   },
+   "avail_mean": 0.9908637747336378,
+   "best_by_n": [
+    {
+     "n": 1,
+     "stations": [
+      "OMIE"
+     ],
+     "revenue_musd": 1227.3262759129937,
+     "premium_pct": 0.0,
+     "marginal_rev_musd": 0.0,
+     "marginal_cost_musd": 0.0,
+     "share": {
+      "OMIE": 1.0
+     }
+    },
+    {
+     "n": 2,
+     "stations": [
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1592.9055242159218,
+     "premium_pct": 29.78663909325807,
+     "marginal_rev_musd": 365.5792483029282,
+     "marginal_cost_musd": 375.6574644758488,
+     "share": {
+      "ISONE": 0.5,
+      "OMIE": 0.5
+     }
+    },
+    {
+     "n": 3,
+     "stations": [
+      "NYISO",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1636.2452810081234,
+     "premium_pct": 33.31787260815708,
+     "marginal_rev_musd": 43.33975679220152,
+     "marginal_cost_musd": 393.87587496464414,
+     "share": {
+      "NYISO": 0.236,
+      "ISONE": 0.284,
+      "OMIE": 0.481
+     }
+    },
+    {
+     "n": 4,
+     "stations": [
+      "ERCOT",
+      "NYISO",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1662.8617309739243,
+     "premium_pct": 35.48652575998514,
+     "marginal_rev_musd": 26.616449965801,
+     "marginal_cost_musd": 714.7769565052154,
+     "share": {
+      "ERCOT": 0.073,
+      "NYISO": 0.198,
+      "ISONE": 0.26,
+      "OMIE": 0.468
+     }
+    },
+    {
+     "n": 5,
+     "stations": [
+      "ERCOT",
+      "MISO",
+      "NYISO",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1668.1922691047064,
+     "premium_pct": 35.92084695357456,
+     "marginal_rev_musd": 5.330538130781889,
+     "marginal_cost_musd": 538.1105416157802,
+     "share": {
+      "ERCOT": 0.069,
+      "MISO": 0.037,
+      "NYISO": 0.176,
+      "ISONE": 0.253,
+      "OMIE": 0.465
+     }
+    }
+   ],
+   "single_station": {
+    "ERCOT": 539.7454454591532,
+    "MISO": 636.6443300605557,
+    "NYISO": 1088.0799507203592,
+    "ISONE": 1135.4457485247226,
+    "OMIE": 1227.3262759129937
+   },
+   "breakeven_ground_cost_busd": 3.0353228227417253,
+   "price_impact": {
+    "0": {
+     "premium_pct_all": 35.92084695357456,
+     "premium_pct_2": 29.78663909325807,
+     "single_revenue_musd": 1227.3262759129937
+    },
+    "1": {
+     "premium_pct_all": 35.87707592379954,
+     "premium_pct_2": 27.77893123255719,
+     "single_revenue_musd": 1177.882371387763
+    },
+    "2": {
+     "premium_pct_all": 36.4776022772636,
+     "premium_pct_2": 25.804124809977512,
+     "single_revenue_musd": 1130.9509121244998
+    },
+    "5": {
+     "premium_pct_all": 40.51508158869224,
+     "premium_pct_2": 23.635060104614624,
+     "single_revenue_musd": 997.9671304950461
+    },
+    "10": {
+     "premium_pct_all": 52.149168783678036,
+     "premium_pct_2": 25.98144912635638,
+     "single_revenue_musd": 800.5434964633996
+    }
+   },
+   "benchmarks": {
+    "pair": [
+     "OMIE",
+     "ISONE"
+    ],
+    "second_rectenna": {
+     "added_rev_musd": 365.5792483029282,
+     "annual_cost_musd": 375.6574644758488
+    },
+    "hvdc": {
+     "added_rev_musd": 212.01874242921926,
+     "annual_cost_musd": 3429.114706798759,
+     "route_km": 6775.145281674287,
+     "loss": 0.21825435845022856,
+     "subsea": true
+    },
+    "battery_2gw_8gwh": {
+     "added_rev_musd": 268.5856045636654,
+     "annual_cost_musd": 219.589249402013
+    }
+   },
+   "concentration": {
+    "top_1pct": 0.09978607097467088,
+    "top_5pct": 0.3152353929416644,
+    "top_10pct": 0.4786913042947296,
+    "top_25pct": 0.7646760209772407,
+    "hours_with_gain": 4678,
+    "share_by_utc_hour": {
+     "ERCOT": [
+      0.209,
+      0.225,
+      0.18,
+      0.126,
+      0.048,
+      0.032,
+      0.041,
+      0.075,
+      0.104,
+      0.101,
+      0.083,
+      0.093,
+      0.096,
+      0.048,
+      0.027,
+      0.013,
+      0.019,
+      0.016,
+      0.005,
+      0.005,
+      0.013,
+      0.019,
+      0.037,
+      0.075
+     ],
+     "MISO": [
+      0.046,
+      0.027,
+      0.025,
+      0.027,
+      0.011,
+      0.008,
+      0.007,
+      0.011,
+      0.016,
+      0.019,
+      0.03,
+      0.084,
+      0.062,
+      0.062,
+      0.099,
+      0.092,
+      0.084,
+      0.035,
+      0.013,
+      0.005,
+      0.008,
+      0.011,
+      0.032,
+      0.068
+     ],
+     "NYISO": [
+      0.163,
+      0.113,
+      0.142,
+      0.145,
+      0.137,
+      0.11,
+      0.071,
+      0.099,
+      0.151,
+      0.198,
+      0.263,
+      0.267,
+      0.321,
+      0.384,
+      0.366,
+      0.285,
+      0.184,
+      0.125,
+      0.066,
+      0.044,
+      0.055,
+      0.134,
+      0.178,
+      0.225
+     ],
+     "ISONE": [
+      0.213,
+      0.218,
+      0.239,
+      0.173,
+      0.192,
+      0.173,
+      0.187,
+      0.209,
+      0.294,
+      0.393,
+      0.434,
+      0.432,
+      0.407,
+      0.36,
+      0.311,
+      0.305,
+      0.244,
+      0.162,
+      0.126,
+      0.107,
+      0.17,
+      0.217,
+      0.285,
+      0.212
+     ],
+     "OMIE": [
+      0.37,
+      0.416,
+      0.415,
+      0.529,
+      0.612,
+      0.678,
+      0.694,
+      0.607,
+      0.435,
+      0.289,
+      0.19,
+      0.124,
+      0.113,
+      0.146,
+      0.198,
+      0.305,
+      0.47,
+      0.663,
+      0.789,
+      0.839,
+      0.754,
+      0.62,
+      0.467,
+      0.421
+     ]
+    }
+   },
+   "breakeven_ground_cost_busd_3pct": 4.7943806523049854
+  },
+  "2024 US (100\u00b0W)": {
+   "markets": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "params": {
+    "CAISO": {
+     "elev": 45.262,
+     "area": 1.537,
+     "eta": 0.972,
+     "load_gw": 25
+    },
+    "ERCOT": {
+     "elev": 53.315,
+     "area": 1.324,
+     "eta": 0.975,
+     "load_gw": 50
+    },
+    "MISO": {
+     "elev": 42.342,
+     "area": 1.639,
+     "eta": 0.97,
+     "load_gw": 75
+    },
+    "NYISO": {
+     "elev": 34.382,
+     "area": 2.021,
+     "eta": 0.965,
+     "load_gw": 17
+    },
+    "ISONE": {
+     "elev": 33.505,
+     "area": 2.076,
+     "eta": 0.964,
+     "load_gw": 13
+    },
+    "OMIE": {
+     "elev": -13.505,
+     "area": -6.239,
+     "eta": -0.146,
+     "load_gw": 28
+    }
+   },
+   "avail_mean": 0.9908849423193686,
+   "best_by_n": [
+    {
+     "n": 1,
+     "stations": [
+      "ISONE"
+     ],
+     "revenue_musd": 698.2455836045766,
+     "premium_pct": 0.0,
+     "marginal_rev_musd": 0.0,
+     "marginal_cost_musd": 0.0,
+     "share": {
+      "ISONE": 1.0
+     }
+    },
+    {
+     "n": 2,
+     "stations": [
+      "CAISO",
+      "ISONE"
+     ],
+     "revenue_musd": 845.4347716842246,
+     "premium_pct": 21.079859513010923,
+     "marginal_rev_musd": 147.189188079648,
+     "marginal_cost_musd": 257.5712232660682,
+     "share": {
+      "CAISO": 0.493,
+      "ISONE": 0.507
+     }
+    },
+    {
+     "n": 3,
+     "stations": [
+      "CAISO",
+      "ERCOT",
+      "ISONE"
+     ],
+     "revenue_musd": 940.1413293553445,
+     "premium_pct": 34.64336208215186,
+     "marginal_rev_musd": 94.70655767111992,
+     "marginal_cost_musd": 221.88479222377347,
+     "share": {
+      "CAISO": 0.462,
+      "ERCOT": 0.105,
+      "ISONE": 0.432
+     }
+    },
+    {
+     "n": 4,
+     "stations": [
+      "CAISO",
+      "ERCOT",
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 957.6501859756931,
+     "premium_pct": 37.15091200892149,
+     "marginal_rev_musd": 17.508856620348574,
+     "marginal_cost_musd": 338.686882729232,
+     "share": {
+      "CAISO": 0.451,
+      "ERCOT": 0.097,
+      "NYISO": 0.159,
+      "ISONE": 0.292
+     }
+    },
+    {
+     "n": 5,
+     "stations": [
+      "CAISO",
+      "ERCOT",
+      "MISO",
+      "NYISO",
+      "ISONE"
+     ],
+     "revenue_musd": 967.6010947882611,
+     "premium_pct": 38.576042227604425,
+     "marginal_rev_musd": 9.950908812567949,
+     "marginal_cost_musd": 274.6959249507674,
+     "share": {
+      "CAISO": 0.448,
+      "ERCOT": 0.09,
+      "MISO": 0.072,
+      "NYISO": 0.117,
+      "ISONE": 0.272
+     }
+    }
+   ],
+   "single_station": {
+    "CAISO": 592.3525760981285,
+    "ERCOT": 478.34427335527005,
+    "MISO": 467.43226394807846,
+    "NYISO": 642.9049950358582,
+    "ISONE": 698.2455836045766
+   },
+   "breakeven_ground_cost_busd": 1.7823539128289747,
+   "price_impact": {
+    "0": {
+     "premium_pct_all": 38.576042227604425,
+     "premium_pct_2": 21.079859513010923,
+     "single_revenue_musd": 698.2455836045766
+    },
+    "1": {
+     "premium_pct_all": 57.23198916500441,
+     "premium_pct_2": 31.668458901339626,
+     "single_revenue_musd": 574.2819079836987
+    },
+    "2": {
+     "premium_pct_all": 76.72969337424558,
+     "premium_pct_2": 40.546102054613954,
+     "single_revenue_musd": 482.45837571730027
+    },
+    "5": {
+     "premium_pct_all": 107.36844492185634,
+     "premium_pct_2": 47.41531112818163,
+     "single_revenue_musd": 359.045028402249
+    },
+    "10": {
+     "premium_pct_all": 140.78353680815,
+     "premium_pct_2": 57.613786661103546,
+     "single_revenue_musd": 261.5072901034595
+    }
+   },
+   "benchmarks": {
+    "pair": [
+     "ISONE",
+     "CAISO"
+    ],
+    "second_rectenna": {
+     "added_rev_musd": 147.189188079648,
+     "annual_cost_musd": 257.5712232660682
+    },
+    "hvdc": {
+     "added_rev_musd": 80.84638135539984,
+     "annual_cost_musd": 858.9816444609088,
+     "route_km": 4750.769629601611,
+     "loss": 0.15752308888804833,
+     "subsea": false
+    },
+    "battery_2gw_8gwh": {
+     "added_rev_musd": 76.35274809817409,
+     "annual_cost_musd": 219.589249402013
+    }
+   },
+   "concentration": {
+    "top_1pct": 0.26451748616660037,
+    "top_5pct": 0.45871733098666534,
+    "top_10pct": 0.5701348458054971,
+    "top_25pct": 0.7769348794963609,
+    "hours_with_gain": 6387,
+    "share_by_utc_hour": {
+     "CAISO": [
+      0.206,
+      0.463,
+      0.771,
+      0.875,
+      0.897,
+      0.867,
+      0.831,
+      0.854,
+      0.848,
+      0.777,
+      0.584,
+      0.469,
+      0.578,
+      0.684,
+      0.523,
+      0.242,
+      0.11,
+      0.074,
+      0.049,
+      0.03,
+      0.014,
+      0.016,
+      0.027,
+      0.047
+     ],
+     "ERCOT": [
+      0.479,
+      0.327,
+      0.085,
+      0.025,
+      0.006,
+      0.005,
+      0.004,
+      0.0,
+      0.0,
+      0.011,
+      0.019,
+      0.055,
+      0.058,
+      0.027,
+      0.014,
+      0.03,
+      0.041,
+      0.063,
+      0.116,
+      0.113,
+      0.113,
+      0.116,
+      0.143,
+      0.294
+     ],
+     "MISO": [
+      0.041,
+      0.03,
+      0.005,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.002,
+      0.005,
+      0.008,
+      0.025,
+      0.025,
+      0.022,
+      0.025,
+      0.09,
+      0.137,
+      0.192,
+      0.189,
+      0.192,
+      0.162,
+      0.154,
+      0.145,
+      0.148,
+      0.126
+     ],
+     "NYISO": [
+      0.071,
+      0.044,
+      0.035,
+      0.027,
+      0.019,
+      0.022,
+      0.017,
+      0.017,
+      0.019,
+      0.027,
+      0.058,
+      0.083,
+      0.067,
+      0.065,
+      0.141,
+      0.253,
+      0.275,
+      0.278,
+      0.266,
+      0.251,
+      0.224,
+      0.194,
+      0.191,
+      0.147
+     ],
+     "ISONE": [
+      0.204,
+      0.136,
+      0.103,
+      0.073,
+      0.079,
+      0.106,
+      0.149,
+      0.127,
+      0.128,
+      0.176,
+      0.314,
+      0.368,
+      0.276,
+      0.198,
+      0.231,
+      0.338,
+      0.381,
+      0.395,
+      0.377,
+      0.444,
+      0.496,
+      0.529,
+      0.49,
+      0.386
+     ]
+    }
+   },
+   "breakeven_ground_cost_busd_3pct": 2.815279828294705
+  },
+  "2024 Atlantic (40\u00b0W)": {
+   "markets": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "params": {
+    "CAISO": {
+     "elev": 1.515,
+     "area": 50.896,
+     "eta": 0.243,
+     "load_gw": 25
+    },
+    "ERCOT": {
+     "elev": 16.913,
+     "area": 4.266,
+     "eta": 0.931,
+     "load_gw": 50
+    },
+    "MISO": {
+     "elev": 22.114,
+     "area": 3.211,
+     "eta": 0.947,
+     "load_gw": 75
+    },
+    "NYISO": {
+     "elev": 29.728,
+     "area": 2.351,
+     "eta": 0.96,
+     "load_gw": 17
+    },
+    "ISONE": {
+     "elev": 31.108,
+     "area": 2.242,
+     "eta": 0.961,
+     "load_gw": 13
+    },
+    "OMIE": {
+     "elev": 31.229,
+     "area": 2.233,
+     "eta": 0.961,
+     "load_gw": 28
+    }
+   },
+   "avail_mean": 0.9908887370977535,
+   "best_by_n": [
+    {
+     "n": 1,
+     "stations": [
+      "OMIE"
+     ],
+     "revenue_musd": 1145.0945033278388,
+     "premium_pct": 0.0,
+     "marginal_rev_musd": 0.0,
+     "marginal_cost_musd": 0.0,
+     "share": {
+      "OMIE": 1.0
+     }
+    },
+    {
+     "n": 2,
+     "stations": [
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1300.9737627242785,
+     "premium_pct": 13.612785577384944,
+     "marginal_rev_musd": 155.87925939643978,
+     "marginal_cost_musd": 375.6574644758488,
+     "share": {
+      "ISONE": 0.336,
+      "OMIE": 0.664
+     }
+    },
+    {
+     "n": 3,
+     "stations": [
+      "ERCOT",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1375.736151006551,
+     "premium_pct": 20.14171293359881,
+     "marginal_rev_musd": 74.76238828227258,
+     "marginal_cost_musd": 714.7769565052154,
+     "share": {
+      "ERCOT": 0.075,
+      "ISONE": 0.284,
+      "OMIE": 0.641
+     }
+    },
+    {
+     "n": 4,
+     "stations": [
+      "ERCOT",
+      "NYISO",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1389.6050410884047,
+     "premium_pct": 21.352869745682735,
+     "marginal_rev_musd": 13.868890081853628,
+     "marginal_cost_musd": 393.87587496464414,
+     "share": {
+      "ERCOT": 0.069,
+      "NYISO": 0.118,
+      "ISONE": 0.177,
+      "OMIE": 0.636
+     }
+    },
+    {
+     "n": 5,
+     "stations": [
+      "ERCOT",
+      "MISO",
+      "NYISO",
+      "ISONE",
+      "OMIE"
+     ],
+     "revenue_musd": 1391.6172230060533,
+     "premium_pct": 21.52859165438119,
+     "marginal_rev_musd": 2.012181917648792,
+     "marginal_cost_musd": 538.1105416157802,
+     "share": {
+      "ERCOT": 0.065,
+      "MISO": 0.029,
+      "NYISO": 0.103,
+      "ISONE": 0.17,
+      "OMIE": 0.633
+     }
+    }
+   ],
+   "single_station": {
+    "ERCOT": 455.0696671627986,
+    "MISO": 455.2533934533924,
+    "NYISO": 638.8141986747321,
+    "ISONE": 695.7267314285126,
+    "OMIE": 1145.0945033278388
+   },
+   "breakeven_ground_cost_busd": 1.2942306649912256,
+   "price_impact": {
+    "0": {
+     "premium_pct_all": 21.52859165438119,
+     "premium_pct_2": 13.612785577384944,
+     "single_revenue_musd": 1145.0945033278388
+    },
+    "1": {
+     "premium_pct_all": 21.625297751808546,
+     "premium_pct_2": 12.301314694171372,
+     "single_revenue_musd": 1095.5532371061183
+    },
+    "2": {
+     "premium_pct_all": 22.17761556547453,
+     "premium_pct_2": 12.65201046670077,
+     "single_revenue_musd": 1049.1569467244033
+    },
+    "5": {
+     "premium_pct_all": 25.452259546724278,
+     "premium_pct_2": 13.889471114573304,
+     "single_revenue_musd": 917.2432910260384
+    },
+    "10": {
+     "premium_pct_all": 34.80858687968313,
+     "premium_pct_2": 17.946483930720248,
+     "single_revenue_musd": 719.4233411512058
+    }
+   },
+   "benchmarks": {
+    "pair": [
+     "OMIE",
+     "ISONE"
+    ],
+    "second_rectenna": {
+     "added_rev_musd": 155.87925939643978,
+     "annual_cost_musd": 375.6574644758488
+    },
+    "hvdc": {
+     "added_rev_musd": 97.95423509251118,
+     "annual_cost_musd": 3429.114706798759,
+     "route_km": 6775.145281674287,
+     "loss": 0.21825435845022856,
+     "subsea": true
+    },
+    "battery_2gw_8gwh": {
+     "added_rev_musd": 180.3907246836484,
+     "annual_cost_musd": 219.589249402013
+    }
+   },
+   "concentration": {
+    "top_1pct": 0.27395505705418527,
+    "top_5pct": 0.5096478946990497,
+    "top_10pct": 0.645102258060032,
+    "top_25pct": 0.9097167726473913,
+    "hours_with_gain": 3227,
+    "share_by_utc_hour": {
+     "ERCOT": [
+      0.324,
+      0.264,
+      0.103,
+      0.061,
+      0.04,
+      0.029,
+      0.032,
+      0.026,
+      0.034,
+      0.029,
+      0.029,
+      0.064,
+      0.077,
+      0.056,
+      0.021,
+      0.024,
+      0.019,
+      0.024,
+      0.026,
+      0.013,
+      0.019,
+      0.032,
+      0.061,
+      0.16
+     ],
+     "MISO": [
+      0.019,
+      0.011,
+      0.011,
+      0.013,
+      0.005,
+      0.005,
+      0.008,
+      0.005,
+      0.008,
+      0.013,
+      0.024,
+      0.027,
+      0.038,
+      0.059,
+      0.097,
+      0.097,
+      0.081,
+      0.051,
+      0.019,
+      0.005,
+      0.011,
+      0.024,
+      0.027,
+      0.043
+     ],
+     "NYISO": [
+      0.066,
+      0.058,
+      0.075,
+      0.089,
+      0.107,
+      0.086,
+      0.063,
+      0.071,
+      0.107,
+      0.137,
+      0.132,
+      0.122,
+      0.152,
+      0.194,
+      0.221,
+      0.167,
+      0.131,
+      0.087,
+      0.071,
+      0.044,
+      0.044,
+      0.074,
+      0.096,
+      0.071
+     ],
+     "ISONE": [
+      0.099,
+      0.116,
+      0.12,
+      0.104,
+      0.096,
+      0.075,
+      0.098,
+      0.159,
+      0.205,
+      0.252,
+      0.3,
+      0.36,
+      0.339,
+      0.296,
+      0.23,
+      0.205,
+      0.151,
+      0.109,
+      0.068,
+      0.071,
+      0.098,
+      0.137,
+      0.194,
+      0.181
+     ],
+     "OMIE": [
+      0.492,
+      0.551,
+      0.691,
+      0.734,
+      0.753,
+      0.804,
+      0.799,
+      0.739,
+      0.646,
+      0.569,
+      0.514,
+      0.427,
+      0.395,
+      0.395,
+      0.43,
+      0.507,
+      0.619,
+      0.728,
+      0.815,
+      0.867,
+      0.829,
+      0.733,
+      0.622,
+      0.544
+     ]
+    }
+   },
+   "breakeven_ground_cost_busd_3pct": 2.044274965866368
+  }
+ },
+ "price_stats": {
+  "2025": {
+   "CAISO": {
+    "count": 8752.0,
+    "mean": 32.21,
+    "std": 21.02,
+    "min": -40.35,
+    "25%": 20.79,
+    "50%": 38.15,
+    "75%": 46.29,
+    "max": 112.59
+   },
+   "ERCOT": {
+    "count": 8754.0,
+    "mean": 33.5,
+    "std": 26.99,
+    "min": -2.02,
+    "25%": 21.61,
+    "50%": 27.83,
+    "75%": 38.2,
+    "max": 813.12
+   },
+   "MISO": {
+    "count": 8755.0,
+    "mean": 38.72,
+    "std": 25.13,
+    "min": -9.7,
+    "25%": 24.86,
+    "50%": 32.05,
+    "75%": 45.0,
+    "max": 411.32
+   },
+   "NYISO": {
+    "count": 8755.0,
+    "mean": 65.13,
+    "std": 49.72,
+    "min": 15.38,
+    "25%": 35.92,
+    "50%": 47.66,
+    "75%": 71.62,
+    "max": 550.69
+   },
+   "ISONE": {
+    "count": 8755.0,
+    "mean": 67.8,
+    "std": 51.72,
+    "min": 9.25,
+    "25%": 33.31,
+    "50%": 46.16,
+    "75%": 83.33,
+    "max": 474.9
+   },
+   "OMIE": {
+    "count": 8717.0,
+    "mean": 73.65,
+    "std": 53.84,
+    "min": -16.95,
+    "25%": 22.05,
+    "50%": 79.03,
+    "75%": 117.52,
+    "max": 271.2
+   }
+  },
+  "2024": {
+   "CAISO": {
+    "count": 8776.0,
+    "mean": 32.66,
+    "std": 33.09,
+    "min": -67.08,
+    "25%": 20.58,
+    "50%": 35.76,
+    "75%": 45.76,
+    "max": 614.42
+   },
+   "ERCOT": {
+    "count": 8778.0,
+    "mean": 28.09,
+    "std": 60.88,
+    "min": -2.85,
+    "25%": 14.05,
+    "50%": 19.8,
+    "75%": 27.95,
+    "max": 2221.48
+   },
+   "MISO": {
+    "count": 8779.0,
+    "mean": 27.58,
+    "std": 17.0,
+    "min": -0.36,
+    "25%": 19.04,
+    "50%": 24.02,
+    "75%": 31.09,
+    "max": 228.26
+   },
+   "NYISO": {
+    "count": 8779.0,
+    "mean": 38.16,
+    "std": 28.25,
+    "min": 13.77,
+    "25%": 24.52,
+    "50%": 30.26,
+    "75%": 39.75,
+    "max": 504.54
+   },
+   "ISONE": {
+    "count": 8779.0,
+    "mean": 41.47,
+    "std": 30.32,
+    "min": 10.0,
+    "25%": 25.14,
+    "50%": 32.4,
+    "75%": 44.47,
+    "max": 326.78
+   },
+   "OMIE": {
+    "count": 8783.0,
+    "mean": 68.21,
+    "std": 49.7,
+    "min": -2.16,
+    "25%": 18.94,
+    "50%": 70.09,
+    "75%": 108.7,
+    "max": 208.83
+   }
+  }
+ },
+ "slot_sweep": [
+  {
+   "sat_lon": -130,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO"
+   ],
+   "best_single": "NYISO",
+   "single_musd": 1053.8926004281357,
+   "all_musd": 1178.4523189372835,
+   "premium_pct": 11.819014428846586
+  },
+  {
+   "sat_lon": -125,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1106.6244084895459,
+   "all_musd": 1297.945088537159,
+   "premium_pct": 17.288673427034816
+  },
+  {
+   "sat_lon": -120,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1118.0284893281078,
+   "all_musd": 1307.3293958479564,
+   "premium_pct": 16.93167109128062
+  },
+  {
+   "sat_lon": -115,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1126.0107122700633,
+   "all_musd": 1313.9137360096213,
+   "premium_pct": 16.68749876817257
+  },
+  {
+   "sat_lon": -110,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1131.792237581892,
+   "all_musd": 1318.6472449564064,
+   "premium_pct": 16.509656204546495
+  },
+  {
+   "sat_lon": -105,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1136.0387147094189,
+   "all_musd": 1322.0438975663214,
+   "premium_pct": 16.37313767994957
+  },
+  {
+   "sat_lon": -100,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1139.2151697682464,
+   "all_musd": 1324.4702909029913,
+   "premium_pct": 16.26164451202241
+  },
+  {
+   "sat_lon": -95,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1141.5695920664057,
+   "all_musd": 1326.1300945051025,
+   "premium_pct": 16.16725810860253
+  },
+  {
+   "sat_lon": -90,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1143.2740958502268,
+   "all_musd": 1327.0996977339416,
+   "premium_pct": 16.078874046998127
+  },
+  {
+   "sat_lon": -85,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1144.448602882272,
+   "all_musd": 1327.4616930380867,
+   "premium_pct": 15.991376956107906
+  },
+  {
+   "sat_lon": -80,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1145.1871227807333,
+   "all_musd": 1327.270674192837,
+   "premium_pct": 15.89989511670109
+  },
+  {
+   "sat_lon": -75,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1145.4983338050724,
+   "all_musd": 1326.4921403227418,
+   "premium_pct": 15.800442582613883
+  },
+  {
+   "sat_lon": -70,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1145.4401189875998,
+   "all_musd": 1325.0513397902819,
+   "premium_pct": 15.680542162381371
+  },
+  {
+   "sat_lon": -65,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE"
+   ],
+   "best_single": "ISONE",
+   "single_musd": 1145.0517640813264,
+   "all_musd": 1322.8171378185125,
+   "premium_pct": 15.524658300474915
+  },
+  {
+   "sat_lon": -60,
+   "visible": [
+    "CAISO",
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1189.1333869780244,
+   "all_musd": 1665.358495927852,
+   "premium_pct": 40.04808158318309
+  },
+  {
+   "sat_lon": -55,
+   "visible": [
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1204.407508068619,
+   "all_musd": 1660.7365117527797,
+   "premium_pct": 37.88825631085009
+  },
+  {
+   "sat_lon": -50,
+   "visible": [
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1214.7064649833785,
+   "all_musd": 1665.912214213036,
+   "premium_pct": 37.14524967444144
+  },
+  {
+   "sat_lon": -45,
+   "visible": [
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1221.976300148942,
+   "all_musd": 1668.2154304368069,
+   "premium_pct": 36.51782200959828
+  },
+  {
+   "sat_lon": -40,
+   "visible": [
+    "ERCOT",
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1227.3262759129937,
+   "all_musd": 1668.1922691047064,
+   "premium_pct": 35.92084695357456
+  },
+  {
+   "sat_lon": -35,
+   "visible": [
+    "MISO",
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1231.2919262516666,
+   "all_musd": 1642.3406060913496,
+   "premium_pct": 33.3835275839913
+  },
+  {
+   "sat_lon": -30,
+   "visible": [
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1234.2113857118586,
+   "all_musd": 1633.817804226981,
+   "premium_pct": 32.37746978688263
+  },
+  {
+   "sat_lon": -25,
+   "visible": [
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1236.3816363496608,
+   "all_musd": 1629.5903576235407,
+   "premium_pct": 31.803183557045035
+  },
+  {
+   "sat_lon": -20,
+   "visible": [
+    "NYISO",
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1237.9177125396875,
+   "all_musd": 1622.466891959637,
+   "premium_pct": 31.064195586232945
+  },
+  {
+   "sat_lon": -15,
+   "visible": [
+    "ISONE",
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1238.8612366162777,
+   "all_musd": 1572.840172770583,
+   "premium_pct": 26.958542755483037
+  },
+  {
+   "sat_lon": -10,
+   "visible": [
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1239.3804300174465,
+   "all_musd": 1239.3804300174465,
+   "premium_pct": 0.0
+  },
+  {
+   "sat_lon": -5,
+   "visible": [
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1239.4855979131498,
+   "all_musd": 1239.4855979131498,
+   "premium_pct": 0.0
+  },
+  {
+   "sat_lon": 0,
+   "visible": [
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1239.1199727321332,
+   "all_musd": 1239.1199727321332,
+   "premium_pct": 0.0
+  },
+  {
+   "sat_lon": 5,
+   "visible": [
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1238.3494820054834,
+   "all_musd": 1238.3494820054834,
+   "premium_pct": 0.0
+  },
+  {
+   "sat_lon": 10,
+   "visible": [
+    "OMIE"
+   ],
+   "best_single": "OMIE",
+   "single_musd": 1237.0787749251383,
+   "all_musd": 1237.0787749251383,
+   "premium_pct": 0.0
+  }
+ ],
+ "crossover_km": {
+  "land": 890.4968130994276,
+  "subsea": 296.83227103314255
+ },
+ "hourly_index_start": "2025-01-01 00:00:00+00:00"
+}
