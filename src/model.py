@@ -46,7 +46,8 @@ def dispatch(prices, avail, eta, k, p_gw, cap_gw=None):
     eta:    (N,) beam delivery efficiency per station
     k:      (N,) price impact, $/MWh per GW delivered (price falls by k*q)
     Revenue at station i for delivered q is q*(p - k*q); marginal revenue p - 2kq.
-    Water-fill marginal revenue at level lam >= 0 subject to sum(q/eta) <= p_gw*avail.
+    Per unit of power sent, marginal revenue is eta*(p - 2kq); water-fill it at level lam >= 0
+    subject to sum(q/eta) <= p_gw*avail, i.e. q = (p - lam/eta) / 2k.
     Returns delivered GW (T, N).
     """
     p = np.nan_to_num(prices, nan=-1e9)
@@ -55,7 +56,7 @@ def dispatch(prices, avail, eta, k, p_gw, cap_gw=None):
     budget = (p_gw * avail)[:, None]
 
     def q_at(lam):
-        return np.clip((p - lam) / (2 * k), 0, cap)
+        return np.clip((p - lam / eta) / (2 * k), 0, cap)
 
     def sent(lam):
         return (q_at(lam) / eta).sum(axis=1, keepdims=True)

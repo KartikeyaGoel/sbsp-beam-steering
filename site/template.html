@@ -1,0 +1,428 @@
+<meta charset="utf-8">
+<title>Beam, Wire, or Battery?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; the explorer is a two-pane instrument (controls | readout) that stacks on phones. */
+:root {
+  --bg: #f2f4f7; --surface: #ffffff; --ink: #142030; --muted: #586679; --line: #d4dbe4; --accent: #2747c9;
+  --good: #1f7a4d; --bad: #b3361f;
+  --m-CAISO: #d05a00; --m-ERCOT: #6b64b0; --m-MISO: #148a6a; --m-NYISO: #d02a82; --m-ISONE: #5a9418; --m-OMIE: #b88a00;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --s1: .75rem; --s2: .875rem; --s3: 1rem; --s4: 1.25rem; --s5: 1.75rem; --s6: clamp(2rem, 6vw, 3.4rem);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d131b; --surface: #141c27; --ink: #e5ebf2; --muted: #93a1b4; --line: #283444; --accent: #8aa4ff;
+  --good: #5cc08a; --bad: #f08a72;
+  --m-CAISO: #ff8a3d; --m-ERCOT: #a49cf0; --m-MISO: #4cc9a3; --m-NYISO: #ff6db5; --m-ISONE: #9bd25a; --m-OMIE: #f0c23d;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0d131b; --surface: #141c27; --ink: #e5ebf2; --muted: #93a1b4; --line: #283444; --accent: #8aa4ff;
+  --good: #5cc08a; --bad: #f08a72;
+  --m-CAISO: #ff8a3d; --m-ERCOT: #a49cf0; --m-MISO: #4cc9a3; --m-NYISO: #ff6db5; --m-ISONE: #9bd25a; --m-OMIE: #f0c23d;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 var(--s3)/1.6 var(--f-body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.08; }
+h1 { font-size: var(--s6); font-weight: 800; font-stretch: 78%; letter-spacing: -.01em; }
+h2 { font-size: var(--s5); font-weight: 700; font-stretch: 85%; }
+h3 { font-size: var(--s4); font-weight: 600; font-stretch: 90%; }
+p { margin: 0; max-width: 65ch; }
+.eyebrow { font: 500 var(--s1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+a { color: var(--accent); }
+section { display: grid; gap: 18px; }
+
+header.hero { display: grid; gap: 18px; }
+.lede { font-size: var(--s4); line-height: 1.5; max-width: 60ch; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.fact { background: var(--surface); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.fact b { font: 700 var(--s5)/1.1 var(--f-display); font-stretch: 85%; }
+.fact span { font-size: var(--s2); color: var(--muted); }
+
+/* Explorer */
+.instrument { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); border: 1px solid var(--line); background: var(--surface); }
+.controls { padding: 20px; border-right: 1px solid var(--line); display: grid; gap: 22px; align-content: start; }
+.readout { padding: 20px; display: grid; gap: 20px; align-content: start; min-width: 0; }
+@media (max-width: 760px) { .instrument { grid-template-columns: minmax(0, 1fr); } .controls { border-right: 0; border-bottom: 1px solid var(--line); } }
+.field { display: grid; gap: 8px; }
+.field label, .field .lbl { font: 500 var(--s1)/1.2 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.field output { color: var(--ink); text-transform: none; letter-spacing: 0; }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { font: 500 var(--s2) var(--f-body); padding: 5px 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; border-radius: 3px; }
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.seg button:focus-visible, .site input:focus-visible, input[type=range]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sites { display: grid; gap: 6px; }
+.site { display: grid; grid-template-columns: auto 10px 1fr auto; align-items: center; gap: 8px; font-size: var(--s2); padding: 4px 0; }
+.site .dot { width: 10px; height: 10px; border-radius: 50%; }
+.site.out { color: var(--muted); }
+.site.out .dot { opacity: .35; }
+.site small { font-family: var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px 20px; }
+.kpi { display: grid; gap: 2px; }
+.kpi .v { font: 700 var(--s5)/1.1 var(--f-display); font-stretch: 85%; font-variant-numeric: tabular-nums; }
+.kpi .k { font-size: var(--s1); color: var(--muted); font-family: var(--f-mono); letter-spacing: .04em; text-transform: uppercase; }
+.verdict { font-size: var(--s2); padding: 10px 12px; border-left: 3px solid var(--muted); background: var(--bg); max-width: none; }
+.verdict.good { border-color: var(--good); } .verdict.bad { border-color: var(--bad); }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { fill: var(--muted); font: 10px var(--f-mono); }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--s1); color: var(--muted); font-family: var(--f-mono); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+.bars { display: grid; gap: 14px; }
+.barrow { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 12px; align-items: center; }
+.barrow .name { font-size: var(--s2); }
+.bartrack { display: grid; gap: 3px; }
+.bar { height: 14px; position: relative; }
+.bar div { height: 100%; }
+.bartrack > span { font: 500 11px var(--f-mono); color: var(--ink); }
+.scalebar { position: relative; height: 16px; font: 10px var(--f-mono); color: var(--muted); }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.notes ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: var(--s2); }
+footer { font-size: var(--s2); color: var(--muted); display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (prefers-reduced-motion: no-preference) { .bar div { transition: width .3s ease; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Space solar power · market analysis · 2024–2025 prices</span>
+    <h1>Beam, wire, or battery?</h1>
+    <p class="lede">A solar power satellite in geostationary orbit can repoint its microwave beam to a different ground station in milliseconds. Supporters call this an "interconnector in space". This page puts a number on it, using a year of real hourly prices from six electricity markets.</p>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <section aria-labelledby="ex-h">
+    <h2 id="ex-h">Run the satellite yourself</h2>
+    <p class="muted">Choose a parking spot in orbit and which ground stations (rectennas) to build. Every hour the beam goes to whichever station pays most. The model runs here, in your browser, on the real hourly day-ahead prices.</p>
+    <div class="instrument">
+      <div class="controls">
+        <div class="field">
+          <span class="lbl">Price year</span>
+          <div class="seg" id="years"></div>
+        </div>
+        <div class="field">
+          <label for="slot">Orbital slot <output id="slotOut"></output></label>
+          <input type="range" id="slot" min="-140" max="20" step="1" value="-40">
+          <div class="seg" id="presets"></div>
+        </div>
+        <div class="field">
+          <span class="lbl">Rectennas <output id="siteCount"></output></span>
+          <div class="sites" id="sites"></div>
+        </div>
+        <div class="field">
+          <label for="cost">Cost per rectenna <output id="costOut"></output></label>
+          <input type="range" id="cost" min="0.5" max="6" step="0.05" value="3.12">
+          <span class="muted" style="font-size:var(--s1)">NASA's 2024 estimate is $3.12B for a 2 GW site. Annualized at 7% over 30 years and scaled by the site's footprint.</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="kpis" id="kpis"></div>
+        <p class="verdict" id="verdict"></p>
+        <div class="field">
+          <label for="week">Hour by hour, one week <output id="weekOut"></output></label>
+          <input type="range" id="week" min="0" max="51" step="1" value="27">
+        </div>
+        <svg class="chart" id="weekChart" viewBox="0 0 640 230" role="img" aria-label="Hourly prices and beam destination for the selected week"></svg>
+        <div class="legend" id="weekLegend"></div>
+        <svg class="chart" id="mapChart" viewBox="0 0 640 200" role="img" aria-label="Rectenna sites and the satellite's view"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="b-h">
+    <h2 id="b-h">Is the beam the cheapest way to get this flexibility?</h2>
+    <p class="muted">Each option starts from a satellite feeding one fixed rectenna and adds one thing: a second rectenna to steer to, an HVDC line to the same second market, or a 2 GW / 8 GWh battery at the fixed site. The bars show added revenue per dollar of annualized cost. Anything above 1.0 pays for itself.</p>
+    <div class="seg" id="benchRuns"></div>
+    <div class="bars" id="bench"></div>
+    <p id="benchNote" class="muted" style="font-size:var(--s2)"></p>
+  </section>
+
+  <section aria-labelledby="f-h">
+    <h2 id="f-h">What the numbers say</h2>
+    <div class="notes">
+      <div><h3>Findings</h3><ul id="findings"></ul></div>
+      <div><h3>What this leaves out</h3><ul>
+        <li>Energy-only, day-ahead revenue. Real-time spikes, capacity and ancillary payments would add value to every option.</li>
+        <li>Prices are taken as given here. A 2 GW plant would push down prices in small markets, which makes steering <em>more</em> valuable (see the paper).</li>
+        <li>Rectenna costs are very uncertain. We scale one NASA estimate by footprint.</li>
+        <li>An HVDC line can also carry other generators' power. That reuse isn't credited.</li>
+        <li>Cross-border regulation and siting are ignored. They may matter most for the transatlantic case.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kartikeya Goel, Stanford University. Independent work, October 2026.</span>
+    <span>Code, data and preprint: <a href="https://github.com/KartikeyaGoel/sbsp-beam-steering">github.com/KartikeyaGoel/sbsp-beam-steering</a></span>
+    <span>Prices: CAISO, ERCOT, MISO, NYISO, ISO-NE (via gridstatus) and OMIE. Costs: NASA OTPS Space-Based Solar Power report (2024).</span>
+  </footer>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const MARKETS = D.stations.map(s => s.market);
+const NAMES = { CAISO: "California", ERCOT: "Texas", MISO: "Midwest (Illinois)", NYISO: "New York", ISONE: "New England", OMIE: "Spain" };
+const RE = 6378.137, RG = 42164, HG = RG - RE, MIN_EL = 15, P_GW = 2, REF_AREA = 1.5;
+const crf = (r, n) => r * (1 + r) ** n / ((1 + r) ** n - 1);
+const ANN = crf(0.07, 30);
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = (x, d = 0) => x.toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+const money = m => (Math.abs(m) >= 1000 ? "$" + fmt(m / 1000, 2) + "B" : "$" + fmt(m) + "M");
+
+const state = { year: "2025", slot: -40, cost: 3.12, week: 27, chosen: new Set(["ISONE", "OMIE", "NYISO"]) };
+
+function geom(st, slot) {
+  const g = Math.acos(Math.cos(rad(st.lat)) * Math.cos(rad(st.lon - slot)));
+  const el = deg(Math.atan2(Math.cos(g) - RE / RG, Math.sin(g)));
+  const d = Math.sqrt(RG * RG + RE * RE - 2 * RG * RE * Math.cos(g));
+  const area = (d / HG) ** 2 / Math.sin(rad(Math.max(el, 1)));
+  return { el, area, eta: 1 - 0.02 / Math.sin(rad(Math.min(Math.max(el, 1), 90))) };
+}
+
+// Fraction of each hour the satellite is sunlit (outside Earth's shadow), sampled every 5 minutes.
+const eclipseCache = {};
+function eclipse(year, slot) {
+  const key = year + ":" + slot;
+  if (eclipseCache[key]) return eclipseCache[key];
+  const start = Date.parse(D.years[year].start), n = D.years[year].prices[MARKETS[0]].length;
+  const p = [Math.cos(rad(slot)), Math.sin(rad(slot))], out = new Float32Array(n);
+  for (let h = 0; h < n; h++) {
+    let dark = 0;
+    for (let m = 0; m < 60; m += 5) {
+      const t = new Date(start + (h * 60 + m) * 60000);
+      const doy = (t - Date.UTC(t.getUTCFullYear(), 0, 0)) / 864e5;
+      const b = 2 * Math.PI * (doy - 81) / 365, dec = rad(23.44) * Math.sin(b);
+      const eot = 9.87 * Math.sin(2 * b) - 7.53 * Math.cos(b) - 1.5 * Math.sin(b);
+      const uh = t.getUTCHours() + t.getUTCMinutes() / 60, sl = rad(-15 * (uh - 12 + eot / 60));
+      const dot = Math.cos(dec) * (Math.cos(sl) * p[0] + Math.sin(sl) * p[1]);
+      if (dot < 0 && RG * Math.sqrt(1 - dot * dot) < RE) dark++;
+    }
+    out[h] = 1 - dark / 12;  // sunlit fraction
+  }
+  return (eclipseCache[key] = out);
+}
+
+function simulate() {
+  const yr = D.years[state.year], slot = state.slot;
+  const g = Object.fromEntries(D.stations.map(s => [s.market, geom(s, slot)]));
+  const live = MARKETS.filter(m => state.chosen.has(m) && g[m].el >= MIN_EL);
+  const avail = eclipse(state.year, slot), n = avail.length;
+  const single = Object.fromEntries(live.map(m => [m, 0]));
+  let steer = 0;
+  const dest = new Int8Array(n).fill(-1);
+  for (let h = 0; h < n; h++) {
+    let best = 0, bi = -1;
+    for (let i = 0; i < live.length; i++) {
+      const p = yr.prices[live[i]][h];
+      if (p == null) continue;
+      const v = g[live[i]].eta * p;
+      if (v > 0) single[live[i]] += v * avail[h];
+      if (v > best) { best = v; bi = i; }
+    }
+    if (bi >= 0) { steer += best * avail[h]; dest[h] = MARKETS.indexOf(live[bi]); }
+  }
+  const k = P_GW * 1000 / 1e6; // GW * h * $/MWh -> $M
+  steer *= k;
+  for (const m of live) single[m] *= k;
+  const base = live.length ? live.reduce((a, b) => (single[a] >= single[b] ? a : b)) : null;
+  const extra = live.filter(m => m !== base);
+  const addCost = extra.reduce((s, m) => s + state.cost * 1000 * g[m].area / REF_AREA * ANN, 0);
+  const gain = base ? steer - single[base] : 0;
+  const areaSum = extra.reduce((s, m) => s + g[m].area / REF_AREA, 0);
+  return { g, live, base, single, steer, gain, addCost, dest, breakeven: areaSum ? gain / ANN / areaSum / 1000 : null };
+}
+
+function el(tag, attrs = {}, text) {
+  const e = document.createElementNS(tag === "svg" || attrs.svg ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml", tag);
+  for (const [k, v] of Object.entries(attrs)) if (k !== "svg") e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+const svgEl = (tag, attrs, text) => el(tag, { ...attrs, svg: 1 }, text);
+
+function renderControls(sim) {
+  document.getElementById("slotOut").textContent = Math.abs(state.slot) + "°" + (state.slot < 0 ? "W" : "E");
+  document.getElementById("costOut").textContent = "$" + state.cost.toFixed(2) + "B";
+  const box = document.getElementById("sites");
+  box.replaceChildren();
+  for (const m of MARKETS) {
+    const gm = sim.g[m], visible = gm.el >= MIN_EL;
+    const row = el("label", { class: "site" + (visible ? "" : " out") });
+    const cb = el("input", { type: "checkbox", id: "site-" + m });
+    cb.checked = state.chosen.has(m);
+    cb.disabled = !visible;
+    cb.addEventListener("change", () => { cb.checked ? state.chosen.add(m) : state.chosen.delete(m); update(); });
+    const dot = el("span", { class: "dot" }); dot.style.background = `var(--m-${m})`;
+    row.append(cb, dot, el("span", {}, NAMES[m]), el("small", {}, visible ? fmt(gm.el) + "° up" : "out of view"));
+    box.append(row);
+  }
+  document.getElementById("siteCount").textContent = sim.live.length + " in use";
+}
+
+function renderKpis(sim) {
+  const k = document.getElementById("kpis");
+  const net = sim.gain - sim.addCost;
+  const items = sim.base ? [
+    ["Best single site", `${NAMES[sim.base]} · ${money(sim.single[sim.base])}/yr`],
+    ["Steering premium", "+" + fmt(100 * sim.gain / sim.single[sim.base], 1) + "%"],
+    ["Added revenue", money(sim.gain) + "/yr"],
+    ["Added rectenna cost", money(sim.addCost) + "/yr"],
+  ] : [["No rectenna in view", "Pick a slot that sees at least one site"]];
+  k.replaceChildren(...items.map(([a, b]) => { const d = el("div", { class: "kpi" }); d.append(el("span", { class: "k" }, a), el("span", { class: "v" }, b)); return d; }));
+  const v = document.getElementById("verdict");
+  if (!sim.base || sim.live.length < 2) {
+    v.className = "verdict"; v.textContent = "Add a second rectenna in view to see what steering is worth.";
+  } else {
+    v.className = "verdict " + (net >= 0 ? "good" : "bad");
+    v.textContent = (net >= 0 ? `Pays for itself: steering earns ${money(net)}/yr more than the extra rectennas cost.`
+      : `Doesn't pay at this cost: short by ${money(-net)}/yr.`) +
+      ` Break-even is about $${fmt(sim.breakeven, 2)}B per rectenna.`;
+  }
+}
+
+function renderWeek(sim) {
+  const svg = document.getElementById("weekChart"), yr = D.years[state.year];
+  const W = 640, H = 230, L = 40, R = 8, T = 10, B = 52, start = state.week * 168;
+  const n = Math.min(168, yr.prices[MARKETS[0]].length - start);
+  const t0 = new Date(Date.parse(yr.start) + start * 3600e3);
+  document.getElementById("weekOut").textContent = t0.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) + " (UTC)";
+  const shown = sim.live;
+  let max = 10;
+  for (const m of shown) for (let h = 0; h < n; h++) { const p = yr.prices[m][start + h]; if (p != null) max = Math.max(max, p); }
+  max = Math.ceil(max / 50) * 50;
+  const x = h => L + (W - L - R) * h / 168, y = p => T + (H - T - B) * (1 - Math.max(p, 0) / max);
+  svg.replaceChildren();
+  for (let v = 0; v <= max; v += max / 4) {
+    svg.append(svgEl("line", { class: "grid", x1: L, x2: W - R, y1: y(v), y2: y(v) }));
+    svg.append(svgEl("text", { x: L - 6, y: y(v) + 3, "text-anchor": "end" }, "$" + fmt(v)));
+  }
+  for (let d = 0; d <= 7; d++) {
+    const day = new Date(t0.getTime() + d * 864e5);
+    if (d < 7) svg.append(svgEl("text", { x: x(d * 24 + 12), y: H - 6, "text-anchor": "middle" }, day.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" })));
+  }
+  for (const m of shown) {
+    let dpath = "", pen = false;
+    for (let h = 0; h < n; h++) {
+      const p = yr.prices[m][start + h];
+      if (p == null) { pen = false; continue; }
+      dpath += (pen ? "L" : "M") + x(h).toFixed(1) + " " + y(p).toFixed(1);
+      pen = true;
+    }
+    svg.append(svgEl("path", { d: dpath, fill: "none", stroke: css(`--m-${m}`), "stroke-width": 1.4 }));
+  }
+  const bandY = H - B + 12;
+  svg.append(svgEl("text", { x: L - 6, y: bandY + 9, "text-anchor": "end" }, "beam"));
+  for (let h = 0; h < n; h++) {
+    const di = sim.dest[start + h];
+    svg.append(svgEl("rect", { x: x(h), y: bandY, width: Math.max(x(1) - x(0), 1) + 0.3, height: 12,
+      fill: di >= 0 ? css(`--m-${MARKETS[di]}`) : css("--line") }));
+  }
+  const lg = document.getElementById("weekLegend");
+  lg.replaceChildren(...shown.map(m => { const s = el("span"); const i = el("i"); i.style.background = `var(--m-${m})`; s.append(i, document.createTextNode(NAMES[m] + " $/MWh")); return s; }),
+    el("span", {}, "Bottom band: where the beam points each hour"));
+}
+
+function renderMap(sim) {
+  const svg = document.getElementById("mapChart"), W = 640, H = 200, L0 = -130, L1 = 10, A0 = 25, A1 = 50;
+  const x = lon => 20 + (W - 40) * (lon - L0) / (L1 - L0), y = lat => 40 + (H - 60) * (A1 - lat) / (A1 - A0);
+  svg.replaceChildren();
+  for (let lon = -120; lon <= 0; lon += 20) {
+    svg.append(svgEl("line", { class: "grid", x1: x(lon), x2: x(lon), y1: 30, y2: H - 20 }));
+    svg.append(svgEl("text", { x: x(lon), y: H - 6, "text-anchor": "middle" }, Math.abs(lon) + "°" + (lon < 0 ? "W" : "")));
+  }
+  const sx = Math.min(Math.max(x(state.slot), 20), W - 20);
+  svg.append(svgEl("text", { x: 4, y: 14 }, "GEO"));
+  svg.append(svgEl("line", { class: "grid", x1: 20, x2: W - 20, y1: 10, y2: 10 }));
+  for (const s of D.stations) {
+    const gm = sim.g[s.market], on = sim.live.includes(s.market), visible = gm.el >= MIN_EL;
+    if (visible) svg.append(svgEl("line", { x1: sx, y1: 12, x2: x(s.lon), y2: y(s.lat), stroke: css(`--m-${s.market}`),
+      "stroke-width": on ? 1.5 : 0.8, "stroke-dasharray": on ? "" : "3 3", opacity: on ? 0.9 : 0.4 }));
+    svg.append(svgEl("circle", { cx: x(s.lon), cy: y(s.lat), r: on ? 6 : 4, fill: css(`--m-${s.market}`), opacity: visible ? 1 : 0.3 }));
+    svg.append(svgEl("text", { x: x(s.lon) + 9, y: y(s.lat) + 4 }, NAMES[s.market].split(" ")[0]));
+  }
+  svg.append(svgEl("rect", { x: sx - 7, y: 5, width: 14, height: 10, fill: css("--accent") }));
+}
+
+function renderFacts() {
+  const r = D.results.runs, a = r["2025 Atlantic (40°W)"], u = r["2025 US (100°W)"], u4 = r["2024 US (100°W)"];
+  const b = a.benchmarks;
+  const facts = [
+    [`+${fmt(u.best_by_n.at(-1).premium_pct)}–${fmt(u4.best_by_n.at(-1).premium_pct)}%`, "extra revenue from steering among US markets, versus the best single site"],
+    [`${money(b.second_rectenna.added_rev_musd)} vs ${money(b.second_rectenna.annual_cost_musd)}`, "per year: what a Spain + New England pair adds, against the second rectenna's cost (2025)"],
+    [`${fmt(b.hvdc.annual_cost_musd / b.second_rectenna.annual_cost_musd)}× cheaper`, `than a ${fmt(b.hvdc.route_km)} km subsea HVDC line doing the same job`],
+    [`~${fmt(Math.round(D.results.crossover_km.land / 10) * 10)} km`, `over land (${fmt(Math.round(D.results.crossover_km.subsea / 10) * 10)} km subsea): beyond this, a rectenna beats an HVDC line`],
+  ];
+  document.getElementById("facts").replaceChildren(...facts.map(([v, t]) => { const d = el("div", { class: "fact" }); d.append(el("b", {}, v), el("span", {}, t)); return d; }));
+  const f = [
+    "Two or three rectennas capture nearly all the value. Beyond three, gains are small.",
+    "The gain is broad, not spike-driven: the top 10% of hours supply only about half of it.",
+    "The best slots sit between 60°W and 15°W, where Spain and the US East Coast are both in view (27–40% premium in 2025).",
+    "Between nearby markets, such as New York and New England, an ordinary HVDC line or a battery beats a second rectenna.",
+    "Steering doesn't fix space solar's cost problem. It changes how the system should be designed.",
+  ];
+  document.getElementById("findings").replaceChildren(...f.map(t => el("li", {}, t)));
+}
+
+let benchKey = "2025 Atlantic (40°W)";
+function renderBench() {
+  const runs = Object.keys(D.results.runs);
+  const seg = document.getElementById("benchRuns");
+  seg.replaceChildren(...runs.map(k => { const b = el("button", { type: "button", "aria-pressed": String(k === benchKey) }, k); b.addEventListener("click", () => { benchKey = k; renderBench(); }); return b; }));
+  const bm = D.results.runs[benchKey].benchmarks;
+  const opts = [["second_rectenna", "Second rectenna (beam)", "--accent"], ["hvdc", "HVDC line (wire)", "--m-CAISO"], ["battery_2gw_8gwh", "Battery at fixed site", "--m-MISO"]];
+  const maxR = 1.4;
+  const box = document.getElementById("bench");
+  box.replaceChildren(...opts.map(([key, label, color]) => {
+    const o = bm[key], ratio = o.added_rev_musd / o.annual_cost_musd, w = Math.min(ratio / maxR, 1) * 100;
+    const row = el("div", { class: "barrow" });
+    const track = el("div", { class: "bartrack" });
+    const bar = el("div", { class: "bar" }); bar.style.setProperty("--w", w + "%");
+    const fill = el("div"); fill.style.width = w + "%"; fill.style.background = `var(${color})`;
+    bar.append(fill);
+    track.append(bar, el("span", {}, `${ratio.toFixed(2)} · ${money(o.added_rev_musd)} for ${money(o.annual_cost_musd)}/yr`));
+    row.append(el("span", { class: "name" }, label), track);
+    return row;
+  }));
+  const scale = el("div", { class: "barrow" });
+  const sb = el("div", { class: "scalebar" });
+  for (const v of [0, 0.5, 1, 1.4]) { const t = el("span", {}, v === 1 ? "1.0 pays" : String(v)); t.style.position = "absolute"; t.style.left = (v / maxR * 100) + "%"; t.style.transform = "translateX(-50%)"; sb.append(t); }
+  scale.append(el("span"), sb);
+  box.append(scale);
+  document.getElementById("benchNote").textContent = `Pair: ${NAMES[bm.pair[0]]} (fixed) and ${NAMES[bm.pair[1]]}. HVDC route ${fmt(bm.hvdc.route_km)} km${bm.hvdc.subsea ? " subsea" : ""} with ${fmt(bm.hvdc.loss * 100)}% losses.`;
+}
+
+function update() {
+  const sim = simulate();
+  renderControls(sim); renderKpis(sim); renderWeek(sim); renderMap(sim);
+}
+
+function init() {
+  const ys = document.getElementById("years");
+  for (const y of Object.keys(D.years).sort().reverse()) {
+    const b = el("button", { type: "button", "aria-pressed": String(y === state.year) }, y);
+    b.addEventListener("click", () => { state.year = y; [...ys.children].forEach(c => c.setAttribute("aria-pressed", String(c === b))); update(); });
+    ys.append(b);
+  }
+  const pr = document.getElementById("presets");
+  for (const [label, v, set] of [["US · 100°W", -100, ["ISONE", "NYISO", "ERCOT", "CAISO"]], ["Atlantic · 40°W", -40, ["ISONE", "OMIE", "NYISO"]], ["Best · 60°W", -60, ["CAISO", "ISONE", "OMIE"]]]) {
+    const b = el("button", { type: "button" }, label);
+    b.addEventListener("click", () => { state.slot = v; state.chosen = new Set(set); document.getElementById("slot").value = v; update(); });
+    pr.append(b);
+  }
+  const bind = (id, key, cast = Number) => document.getElementById(id).addEventListener("input", e => { state[key] = cast(e.target.value); update(); });
+  bind("slot", "slot"); bind("cost", "cost"); bind("week", "week");
+  renderFacts(); renderBench(); update();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { update(); renderBench(); });
+}
+init();
+</script>

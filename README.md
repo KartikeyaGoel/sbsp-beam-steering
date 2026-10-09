@@ -4,7 +4,11 @@ What is a steerable space solar beam worth? This repo measures it with real hour
 
 A geostationary solar power satellite can repoint its microwave beam between ground rectennas in different
 markets within milliseconds. Advocates call this "a giant interconnector in space", but no published
-study has priced it with market data. This repo does:
+study has priced it with market data. This repo does.
+
+**Paper:** [`paper/paper.pdf`](paper/paper.pdf). **Interactive explorer:** open `site/index.html` in a browser
+(it is self-contained; the model runs client-side on the same price data).
+
 
 1. **Geometry**: which rectenna sites each GEO slot can see, at what elevation, and how much larger a
    low-elevation rectenna must be. Includes hour-by-hour Earth-shadow eclipses.
@@ -36,9 +40,11 @@ uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
 for y in 2025 2024; do for m in CAISO ERCOT MISO NYISO ISONE OMIE; do .venv/bin/python src/fetch_prices.py $m $y; done; done
 .venv/bin/python src/experiments.py
 .venv/bin/python src/figures.py
+.venv/bin/python src/build_site.py                      # site/index.html
+cd paper && tectonic -X compile paper.tex               # paper/paper.pdf
 ```
 
-Outputs: `results/results.json`, `results/hourly.json`, `results/figs/*.png`.
+Outputs: `results/results.json`, `results/hourly.json`, `results/figs/*.png`, `site/index.html`, `paper/paper.pdf`.
 
 ## Key assumptions (all in code, all swept)
 

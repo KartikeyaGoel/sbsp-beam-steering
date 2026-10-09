@@ -39,6 +39,7 @@ def fig_premium():
         rows = run["best_by_n"]
         ls = "-" if key.startswith("2025") else ":"
         ax.plot([r["n"] for r in rows], [r["premium_pct"] for r in rows], marker="o", ls=ls, label=key)
+    ax.set_xticks(range(1, 6))
     ax.set(xlabel="Rectennas the beam can switch between", ylabel="Revenue premium vs best single site (%)",
            title="Value of steering (no price impact)")
     ax.legend(fontsize=7, frameon=False)
